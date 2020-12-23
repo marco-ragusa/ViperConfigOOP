@@ -1,0 +1,48 @@
+# If you don't want to store sensitive data, set HISTCONTROL=ignorespace in ~/.bashrc
+
+# You simply set the ENV with space before and run the program es.
+#     $ export [KEY]=value
+#     $ export DELTA=5
+#     $./main
+
+# Nested values es.
+#     $ export [PARENT]_[KEY]=value
+#     $ export IMAP_PASS=bar-foo
+#     $ export LOG_LEVEL=5
+#     $./main
+
+# The app wait deltaTime every cycle
+delta: 10
+
+log:
+  # PanicLevel=0 FatalLevel=1 ErrorLevel=2 WarnLevel=3 InfoLevel=4 DebugLevel=5 TraceLevel=6
+  level: 4
+  # It's a best practise set absolute paths, if not set it use only stdout
+  path:
+    - ./app.log
+    - /tmp/app.log
+    #- /var/log/app/app.log
+    #- ecc...
+  time: false
+
+# If you want change the DB configuration, you need restart the app
+database:
+  host: localhost
+  port: 5432
+  name: app
+  user: postgres
+  pass: 1234
+  zone: Europe/Rome
+  ssl: disable
+
+imap:
+  host: smtp.gmail.com
+  port: 993
+  user: # Load from env
+  pass: # Load from env
+  # messages at a time (per process)
+  msg: 5
+
+emailbot:
+  # mailbox process at a time
+  proc: 2
